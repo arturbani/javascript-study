@@ -42,7 +42,18 @@ var todoList = {
     },
 
     displayTodos = function(){
-        console.log('My todos:' + todos);
+        if (todos.length === 0)
+            console.log('Your todo list are empty! Try adding new todos!');
+        
+        else{
+            console.log('My todos:');
+            for (var i=0; i<todos.length; i++){
+                if (todos[i].completed === true)
+                    console.log('(X)', todos[i].todoText);
+                else 
+                    console.log('( )', todos[i].todoText);
+            }
+        }
     
     }
 
