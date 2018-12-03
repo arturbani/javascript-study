@@ -30,6 +30,35 @@ var todoList = {
 
     },
 
+    toggleAll = function(){
+        var toggleCount = 0;
+
+        for (var i=0; i<todos.length; i++){
+            if (todos[i].completed === true)
+                toggleCount++;
+
+        }
+
+        // se todos estão completos, todos irão mudar
+        if (toggleCount === todos.length){
+            for (var i=0; i<todos.length){
+                todos[i].completed = false;
+
+            }
+
+        }
+
+        // em qualquer outra situação, todos ficarão completos
+        else {
+            for (var i=0; i<todos.length){
+                todos[i].completed = true;
+
+            }
+
+        }
+
+    },
+
     removeTodo = function(position){
         this.todos.splice(position, 1);
     
