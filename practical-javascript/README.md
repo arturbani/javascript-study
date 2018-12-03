@@ -1,3 +1,5 @@
+# Practical Javascript
+
 Based on the "Practical Javascript" course, made by Gordon Zhu.
 
 You can enroll in this course for free at https://watchandcode.com/p/practical-javascript
