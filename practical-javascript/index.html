@@ -9,6 +9,7 @@
     <script src="src/jquery-2.2.1.js"></script>
    
 </head>
+
 <body>
     <div style="background-color: gray; 
                 height: 500px;
@@ -17,13 +18,35 @@
         <div>
             <button onclick="handlers.displayTodos()">Display Todos</button> 
             <button onclick="handlers.toggleAll()">Toggle all Todos</button> 
+        
         </div>
 
         <div>
             </br>
             <button onclick="handlers.addTodo()">Add</button>
-            <input id="todoTextInput" type="text">
+            <input id="addTodoTextInput" type="text">
+        
         </div>
+
+        <div>
+            <button onclick="handlers.changeTodo()">Change todo</button>
+            <input id ="changeTodoPositionInput" type="number" min="1">
+            <input id ="changeTodoTextInput" type="text">
+        
+        </div>
+
+        <div>
+                <button onclick="handlers.removeTodo()">Remove todo</button>
+                <input id ="removeTodoPositionInput" type="number" min="1">
+                
+        </div>
+
+        <div>
+                <button onclick="handlers.toggleTodo()">Toggle todo</button>
+                <input id ="toggleTodoPositionInput" type="number" min="1">
+                
+        </div>
+    
     </div>
     
     <script src="src/script.js"></script>
