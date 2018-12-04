@@ -11,18 +11,16 @@
 </head>
 
 <body>
+    <div style="margin: auto;">
+        <h1 style="text-align:center">My Todo List!</h1>
+    
+    </div>    
+    
     <div style="background-color: gray; 
                 height: 500px;
                 width: 500px;
                 margin: auto;">
         <div>
-            <button onclick="handlers.displayTodos()">Display Todos</button> 
-            <button onclick="handlers.toggleAll()">Toggle all Todos</button> 
-        
-        </div>
-
-        <div>
-            </br>
             <button onclick="handlers.addTodo()">Add</button>
             <input id="addTodoTextInput" type="text">
         
@@ -36,15 +34,25 @@
         </div>
 
         <div>
-                <button onclick="handlers.removeTodo()">Remove todo</button>
-                <input id ="removeTodoPositionInput" type="number" min="1">
+            <button onclick="handlers.removeTodo()">Remove todo</button>
+            <input id ="removeTodoPositionInput" type="number" min="1">
                 
         </div>
 
         <div>
-                <button onclick="handlers.toggleTodo()">Toggle todo</button>
-                <input id ="toggleTodoPositionInput" type="number" min="1">
-                
+            <button onclick="handlers.toggleTodo()">Toggle todo</button>
+            <input id ="toggleTodoPositionInput" type="number" min="1">
+            </br>
+            <button onclick="handlers.toggleAll()">Toggle all Todos</button> 
+            
+        </div>
+
+        <div>
+            <ul>
+
+
+            </ul>
+
         </div>
     
     </div>

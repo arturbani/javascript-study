@@ -83,25 +83,22 @@ var todoList = {
 };
 
 var handlers = {
-    displayTodos: function(){
-        todoList.displayTodos();    
-    
-    },
-
     toggleAll: function(){
         todoList.toggleAll();
-    
+        view.displayTodos();
+
     },
 
     addTodo: function(){
         var addTodoTextInput = document.getElementById('addTodoTextInput');
         todoList.addTodo(addTodoTextInput.value);
         addTodoTextInput.value = '';
+        view.displayTodos();
 
     },
 
     // Nas funções abaixo, a posição é subtraída de 1 antes de ser passada como parâmetro
-    // porque para facilitar interação do usuário, coloquei o valor mínimo nas opções de 1
+    // porque para facilitar interação do usuário, coloquei o valor mínimo nas opções de 1.
     // 
     // Assim fica mais intuitivo, o usuário não vai pensar em colocar posição = 0, o programa
     // trata isso.
@@ -112,13 +109,15 @@ var handlers = {
         todoList.changeTodo((changeTodoPositionInput.value-1), changeTodoTextInput.value);
         changeTodoTextInput.value = '';
         changeTodoPositionInput.value = '';
- 
+        view.displayTodos();
+        
     },
 
     removeTodo: function(){
         var removeTodoPositionInput = document.getElementById('removeTodoPositionInput');
         todoList.removeTodo(removeTodoPositionInput.value-1);
         removeTodoPositionInput.value = '';
+        view.displayTodos();
 
     },
 
@@ -126,6 +125,31 @@ var handlers = {
         var toggleTodoPositionInput = document.getElementById('toggleTodoPositionInput');
         todoList.toggleTodo(toggleTodoPositionInput.value-1);
         toggleTodoPositionInput.value = '';
+        view.displayTodos();
+
+    }
+
+};
+
+var view = {
+    displayTodos: function(){
+        var todosUl = document.querySelector('ul');
+        todosUl.innerHTML = '';
+        for (var i=0; i<todoList.todos.length; i++){
+            var todoLi = document.createElement('li');
+            var todo =  todoList.todos[i];
+            var fullTodoText = '';
+
+            if (todo.completed === true)
+                fullTodoText = '(X) ' + todo.todoText;
+
+            else 
+                fullTodoText = '( ) ' + todo.todoText;
+
+            todoLi.textContent = fullTodoText;
+            todosUl.appendChild(todoLi);    
+
+        }
 
     }
 
