@@ -14,8 +14,16 @@
                 height: 500px;
                 width: 500px;
                 margin: auto;">
-        <button id="displayTodosButton">Display Todos</button> 
-        <button id="toggleAllButton">Toggle all Todos</button>
+        <div>
+            <button onclick="handlers.displayTodos()">Display Todos</button> 
+            <button onclick="handlers.toggleAll()">Toggle all Todos</button> 
+        </div>
+
+        <div>
+            </br>
+            <button onclick="handlers.addTodo()">Add</button>
+            <input id="todoTextInput" type="text">
+        </div>
     </div>
     
     <script src="src/script.js"></script>

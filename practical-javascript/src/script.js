@@ -32,28 +32,33 @@ var todoList = {
     toggleAll: function(){
         var toggleCount = 0;
 
-        for (var i=0; i<this.todos.length; i++){
-            if (this.todos[i].completed === true)
-                toggleCount++;
+        if (this.todos.length === 0)
+            console.log('Your todo list are empty! Try adding new todos!');
 
-        }
-
-        // se todos estão completos, todos irão mudar
-        if (toggleCount === this.todos.length){
+        else{
             for (var i=0; i<this.todos.length; i++){
-                todos[i].completed = false;
+                if (this.todos[i].completed === true)
+                    toggleCount++;
 
             }
 
-        }
+            // se todos estão completos, todos irão mudar
+            if (toggleCount === this.todos.length){
+                for (var i=0; i<this.todos.length; i++){
+                    this.todos[i].completed = false;
 
-        // em qualquer outra situação, todos ficarão completos
-        else {
-            for (var i=0; i<this.todos.length; i++){
-                this.todos[i].completed = true;
+                }
 
             }
 
+            // em qualquer outra situação, todos ficarão completos
+            else {
+                for (var i=0; i<this.todos.length; i++){
+                    this.todos[i].completed = true;
+
+                }
+
+            }
         }
 
     },
@@ -76,16 +81,22 @@ var todoList = {
 
 };
 
-var displayTodosButton = document.getElementById('displayTodosButton');
-
-displayTodosButton.addEventListener('click', function(){
-    todoList.displayTodos();
+var handlers = {
+    displayTodos: function(){
+        todoList.displayTodos();    
     
-});
+    },
 
-var toggleAllButton = document.getElementById('toggleAllButton');
+    toggleAll: function(){
+        todoList.toggleAll();
+    
+    },
 
-toggleAllButton.addEventListener('click', function(){
-    todoList.toggleAll();
+    addTodo: function(){
+        var todoTextInput = document.getElementById('todoTextInput');
+        todoList.addTodo(todoTextInput.value);
+        todoTextInput.value = '';
 
-})
+    }
+    
+};
