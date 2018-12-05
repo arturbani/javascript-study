@@ -84,7 +84,6 @@ var handlers = {
     
     removeTodo: function(position){
         todoList.removeTodo(position);
-        removeTodoPositionInput.value = '';
         view.displayTodos();
 
     },
