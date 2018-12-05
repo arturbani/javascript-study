@@ -6,25 +6,26 @@ var todoList = {
             todoText: todoText,
             completed: false
         });
-        this.displayTodos();
+        //this.displayTodos();
         
     },
     
     removeTodo: function(position){
         this.todos.splice(position, 1);
+        // this.displayTodos();
     
     },
 
     changeTodo: function(position, todoText){
         this.todos[position].todoText = todoText;
-        this.displayTodos();
+       // this.displayTodos();
     
     },
 
     toggleTodo: function(position){
         var toggledTodo = !this.todos[position].completed;
         this.todos[position].completed = toggledTodo;
-        this.displayTodos();
+       // this.displayTodos();
 
     },
 
@@ -62,26 +63,6 @@ var todoList = {
 
         }
 
-    },
-
-    displayTodos: function(){
-        var totalTodos = this.todos.length;
-
-        if (totalTodos === 0)
-            console.log('Your todo list are empty! Try adding new todos!');
-            
-        else{
-            console.log('My todos:');
-            this.todos.forEach(function(todo){
-                if (todo.completed === true)
-                    console.log('(X)', todo.todoText);
-                else 
-                    console.log('( )', todo.todoText);
-
-            });
-
-        }
-    
     }
 
 };
@@ -162,7 +143,7 @@ var view = {
     createDeleteButton: function(){
         var deleteButton = document.createElement('button');
         deleteButton.textContent = 'Delete';
-        deleteButton.className = 'deleteButton';
+        deleteButton.className = 'deleteButton btn btn-danger';
         return deleteButton;
     
     },
@@ -177,7 +158,7 @@ var view = {
         
             var elementCliked = event.target;
         
-            if (elementCliked.className === 'deleteButton'){
+            if (elementCliked.className === 'deleteButton btn btn-danger'){
                 handlers.removeTodo(parseInt(elementCliked.parentNode.id));
             
             }
