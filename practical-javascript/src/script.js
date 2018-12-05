@@ -103,7 +103,6 @@ var handlers = {
     
     removeTodo: function(position){
         todoList.removeTodo(position);
-        removeTodoPositionInput.value = '';
         view.displayTodos();
 
     },
@@ -174,10 +173,10 @@ var view = {
         todosUl.addEventListener('click', function(event){
             console.log(event.target.parentNode.id);
         
-            var elementCliked = event.target;
+            var elementClicked = event.target;
         
-            if (elementCliked.className === 'deleteButton'){
-                handlers.removeTodo(parseInt(elementCliked.parentNode.id));
+            if (elementClicked.className === 'deleteButton'){
+                handlers.removeTodo(parseInt(elementClicked.parentNode.id));
             
             }
 
