@@ -2,8 +2,6 @@ var todoList = {
     todos: [],
     
     addTodo: function(todoText){
-        //var aux = new todo();
-        //aux.todoText = todoText;
         this.todos.push({
             todoText: todoText,
             completed: false
@@ -32,50 +30,56 @@ var todoList = {
 
     toggleAll: function(){
         var toggleCount = 0;
+        var totalTodos = this.todos.length;
 
-        if (this.todos.length === 0)
+        if (totalTodos === 0)
             console.log('Your todo list are empty! Try adding new todos!');
 
         else{
-            for (var i=0; i<this.todos.length; i++){
-                if (this.todos[i].completed === true)
+            this.todos.forEach(function(todo){
+                if (todo.completed === true)
                     toggleCount++;
-
-            }
+            
+            });
 
             // se todos estão completos, todos irão mudar
             if (toggleCount === this.todos.length){
-                for (var i=0; i<this.todos.length; i++){
-                    this.todos[i].completed = false;
-
-                }
+                this.todos.forEach(function(todo){
+                    todo.completed = false;
+                
+                });
 
             }
 
             // em qualquer outra situação, todos ficarão completos
             else {
-                for (var i=0; i<this.todos.length; i++){
-                    this.todos[i].completed = true;
+                this.todos.forEach(function(todo){
+                    todo.completed = true;
 
-                }
+                });
 
             }
+
         }
 
     },
 
     displayTodos: function(){
-        if (this.todos.length === 0)
+        var totalTodos = this.todos.length;
+
+        if (totalTodos === 0)
             console.log('Your todo list are empty! Try adding new todos!');
             
         else{
             console.log('My todos:');
-            for (var i=0; i<this.todos.length; i++){
-                if (this.todos[i].completed === true)
-                    console.log('(X)', this.todos[i].todoText);
+            this.todos.forEach(function(todo){
+                if (todo.completed === true)
+                    console.log('(X)', todo.todoText);
                 else 
-                    console.log('( )', this.todos[i].todoText);
-            }
+                    console.log('( )', todo.todoText);
+
+            });
+
         }
     
     }
@@ -96,6 +100,13 @@ var handlers = {
         view.displayTodos();
 
     },
+    
+    removeTodo: function(position){
+        todoList.removeTodo(position);
+        removeTodoPositionInput.value = '';
+        view.displayTodos();
+
+    },
 
     // Nas funções abaixo, a posição é subtraída de 1 antes de ser passada como parâmetro
     // porque para facilitar interação do usuário, coloquei o valor mínimo nas opções de 1.
@@ -111,14 +122,6 @@ var handlers = {
         changeTodoPositionInput.value = '';
         view.displayTodos();
         
-    },
-
-    removeTodo: function(){
-        var removeTodoPositionInput = document.getElementById('removeTodoPositionInput');
-        todoList.removeTodo(removeTodoPositionInput.value-1);
-        removeTodoPositionInput.value = '';
-        view.displayTodos();
-
     },
 
     toggleTodo: function(){
@@ -146,11 +149,43 @@ var view = {
             else 
                 fullTodoText = '( ) ' + todo.todoText;
 
+            todoLi.id = i;
             todoLi.textContent = fullTodoText;
+            todoLi.appendChild(this.createDeleteButton());
             todosUl.appendChild(todoLi);    
 
         }
+        
+    },
+
+    createDeleteButton: function(){
+        var deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.className = 'deleteButton';
+        return deleteButton;
+    
+    },
+
+    setUpEventListeners: function(){
+        var todosUl = document.querySelector('ul');
+
+        // Ao invés de criar eventos para cada filho da ul, criamos um evento geral para que todos
+        // os filhos possam puxar da mãe.
+        todosUl.addEventListener('click', function(event){
+            console.log(event.target.parentNode.id);
+        
+            var elementCliked = event.target;
+        
+            if (elementCliked.className === 'deleteButton'){
+                handlers.removeTodo(parseInt(elementCliked.parentNode.id));
+            
+            }
+
+        });
 
     }
 
 };
+
+// Cria todos os eventos de uma vez, a própria função cuida de classificar o evento.
+view.setUpEventListeners();
