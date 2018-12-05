@@ -151,6 +151,7 @@ var view = {
 
             todoLi.id = i;
             todoLi.textContent = fullTodoText;
+            todoLi.class = 'list-group-item';
             todoLi.appendChild(this.createDeleteButton());
             todosUl.appendChild(todoLi);    
 
